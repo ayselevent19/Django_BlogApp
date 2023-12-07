@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method = "post"> 
+    
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+            <h3>Sign Up</h3>
+            <hr>
+            <form method = "post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <br>
+            <button type = "submit" class = "btn-sm btn-danger">Sign Up</button>
+            </form>
+      </div>
+      </div>
+{% endblock body %}

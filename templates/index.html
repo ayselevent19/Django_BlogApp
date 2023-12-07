@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class = "jumbotron text-center">
+    <h3> Computer Science </h3>
+    <p>Developers can share their blog posts on this blog and help people.</p> 
+</div>
+
+<p>
+{% if request.user.is_authenticated %}
+    signed in, {{request.user.username}}
+{% else %}
+    not signed in
+{% endif %}
+</p>
+{% endblock body %}
+

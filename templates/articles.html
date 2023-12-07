@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class ="row">
+    
+        <div class="col-md-10 offset-md-3">
+            <div class="col-lg-8">
+                <h5>ARTICLES</h5>
+                <hr>
+                </div>
+        </div>
+</div>
+<div class ="row">
+    <div class="col-md-10 offset-md-3">
+        <div class="col-lg-8">
+            <form>
+                 {% csrf_token %} 
+                <input type="text" name = "keyword" class="input-sm" maxlength="64" placeholder="Search...">
+              <button type="submit" class="btn-sm btn-info">Search</button>
+            </form>
+      </div>
+    </div>
+
+</div>
+
+
+{% if articles %}
+
+{% for article in articles %}
+<div class="row">
+    <div class="col-md-10 offset-md-3">
+
+    <!-- Post Content Column -->
+    <div class="col-lg-8">
+
+      <!-- Title -->
+      <a href="{% url 'article:detail' article.id %}"><h5 class="mt-4">{{article.title}}</h5></a> 
+        
+      <!-- Author -->
+      <p class="lead">
+        
+       Published by {{article.author.username}}.
+      </p>
+
+      <hr>
+
+      <!-- Date/Time -->
+      <p>{{article.created_date}}</p>
+      <hr>
+      <!-- Post Content -->
+      <p class="lead">
+          {{article.content|safe|truncatewords:10}}
+      </p> 
+
+      <a style ="float : right;" href="{% url 'article:detail' article.id %}" class ="btn-sm btn-info">more..</a>
+         
+        </div>
+      </div>
+      </div>
+
+{% endfor %}
+
+
+{% else %}
+<div class ="row">
+    
+    <div class="col-md-10 offset-md-3">
+        <div class="col-lg-8">
+<div class = "alert alert-danger">
+   No article!!
+</div>
+</div>
+</div>
+</div>
+{% endif %}
+
+{% endblock body %}
